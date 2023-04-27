@@ -1,0 +1,104 @@
+@font-face {
+    font-family: 'pops';
+    src: url('./Assets/Fonts/Fonts/Poppins/Poppins-Regular.ttf');
+}
+
+/* reserved colors
+    => 2C5663 
+*/
+
+:root{
+    /* DARK THEME */
+    --dt-bg: #222524;
+    --dt-c: #c8c8c8;
+}
+
+::-webkit-scrollbar{
+    width: 20px;
+}
+::-webkit-scrollbar-track{
+    background: none;
+}
+
+::-webkit-scrollbar-thumb{
+    background: rgba(0, 0, 0, 0.2);
+    backdrop-filter: blur(10px);
+}
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    outline: none;
+    list-style: none;
+    text-decoration: none;
+    box-sizing: border-box;
+}
+
+html, body {
+    background: var(--dt-bg);
+    color: var(--dt-c);
+    width: 100vw;
+    height: 100vh;
+    font-family: 'pops';
+    letter-spacing: 0.1rem;
+    overflow: hidden;
+}
+
+img{
+    width: 100%;
+}
+
+a{  
+    cursor: pointer;
+    display: grid;
+    place-content: center;
+    color: var(--dt-c);
+}
+
+label{
+    cursor: pointer;
+}
+
+/* CONSTANTS */
+button{
+    cursor: pointer;
+    background: none;
+    border: none;
+    border-radius: 30px;
+    padding: 10px;
+}
+
+#root{
+    width: 100vw;
+    height: 100vh;
+    display: flex;
+    gap: 50px;
+    overflow: hidden;
+}
+
+.Logo{
+    position: fixed;
+    top: 10px;
+    backdrop-filter: 4px;
+    box-shadow: 0px 2px 5px rgba(0, 0, 0, 0.5);
+    background: rgba(24, 71, 117, 0.1);
+    padding: 1px 4px;
+    border-radius: 10px;
+    right: 10px;
+    z-index: 9999;
+}
+
+.Last{
+    margin-bottom: 100px;
+}
+
+@media all and (max-width: 1000px){
+    .Logo{
+        top: 0px;
+        right: 0px;
+        padding: 10px;
+        width: 100vw;
+        display: flex;
+        justify-content: flex-end;
+    }
+}

@@ -1,0 +1,78 @@
+.LeaderBoard{
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    padding: 50px;    
+}
+
+.players{
+    display: flex;
+    flex-direction: column;
+    gap: 30px;
+    padding: 0px 30px;
+}
+
+.player{
+    display: flex;
+    align-items: center;
+    gap: 20px;
+}
+
+.player .rank{
+    border-radius: 50%;
+    width: 40px;
+    height: 40px;
+    display: grid;
+    place-content: center;
+}
+
+.player .i0{
+    background: rgba(120, 87, 5, 0.7);
+    border: 3px solid rgb(131, 96, 8);
+}
+
+.player .i1{
+    background: rgba(54, 78, 97, 0.7);
+    border: 3px solid rgb(60, 70, 79);
+}
+
+.player .i2{
+    background: rgba(53, 40, 40, 0.7);
+    border: 3px solid rgb(67, 49, 49);
+}
+
+.DP{
+    width: 50px;
+    height: 50px;
+    background: #2c2c2c;
+    display: grid;
+    place-content: center;
+    border-radius: 50%;
+}
+
+.name{
+    flex: 1;
+}
+
+.self{
+    padding: 5px;
+    border: 3px solid hsla(0, 0%, 0%, 0.3);
+    border-radius: 10px;
+    background: rgba(0, 0, 0, 0.2);
+}
+
+@media all and (max-width: 600px){
+    .LeaderBoard{
+        padding: 10px;
+    }
+    .players{
+        padding: 0px 10px;
+    }
+    .player .rank{
+        border-radius: 50%;
+        width: 30px;
+        height: 30px;
+        display: grid;
+        place-content: center;
+    }    
+}

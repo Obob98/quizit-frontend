@@ -1,0 +1,81 @@
+.Home{
+    padding: 20px;
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    /* height: 100%; */
+    /* overflow-y: auto; */
+}
+
+.welcome-tab{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    background: rgba(142, 186, 245, 0.05);
+    border-radius: 20px;
+}
+
+.how{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    background: rgba(142, 245, 212, 0.05);
+    border-radius: 20px;
+}
+
+.how ol{
+    padding-left: 20px;
+}
+
+.how ol li{
+    padding: 10px 20px;
+    list-style: decimal;
+}
+
+.FAQ{
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 20px;
+    backdrop-filter: blur(10px);
+    background: rgba(235, 142, 245, 0.05);
+    border-radius: 20px;
+}
+
+.FAQ .accordions{
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 20px;
+    padding: 0px 10px;
+}
+
+.FAQ .accordion{
+    cursor: pointer;
+    position: relative;
+    flex-basis: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    background: rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.FAQ .accordion .answer{
+    flex-basis: 100%;
+    gap: 10px;
+    /* background: rgba(255, 255, 255, 0.05); */
+    padding: 10px;
+    border-radius: 10px;
+}
+
+.FAQ .accordion .arrow{
+    position: absolute;
+    right: 10px;
+    top: 5px;
+}
