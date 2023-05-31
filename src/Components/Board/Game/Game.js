@@ -7,17 +7,19 @@ import Prompts from './Prompts'
 import axios from 'axios'
 import gameContext from '../../../Context/gameContext'
 import GameOver from './GameOver'
+import AEP from '../../../http-common'
+import Timer from './Timer'
 
 console.log('in game')
 
 const Game = () => {
+  const [scoreline, setScoreline] = useState([])
+  const [countDown, setCountDown] = useState(false)
   const [topics, setTopics] = useState(false)
   const [selectedTopics, setSelectedTopics] = useState([])
   const [fetch, setFetch] = useState(false)
   const [gameOver, setGameover] = useState(false)
   
-  const [loading, setLoading] = useState(false)
-
   const {game, gameSetter} = useContext(gameContext)
 
   useEffect(() => {
@@ -25,7 +27,7 @@ const Game = () => {
     let QA = []
     console.log('in use effect fetch')
     selectedTopics.forEach(value => {
-      axios.post('https://gleaming-gray-gecko.cyclic.app/quizit/api/v1/users/getquestions', {value})
+      AEP.post('/getquestions', {value})
       .then(response => {
         gameSetter({
           QA: [...QA, ...response.data],
@@ -61,25 +63,32 @@ const Game = () => {
 
   const checkGameOver = () => {
     if(game.questionNumber >= game.questionsTotal){
-      gameSetter({
-        ...game,
-        questionNumber: game.questionNumber + 1,
-        questionPointer: game.questionPointer + 1,
-        score: checkScore() ? game.score +  10 : game.score 
-      })
-      setTopics(false)
-      setSelectedTopics([])
-      setGameover(true)
-      return true
+      endGame()
     }else{
       return false
     }
+  }
+  
+  const endGame = () => {
+    gameSetter({
+      ...game,
+      questionNumber: game.questionNumber + 1,
+      questionPointer: game.questionPointer + 1,
+      score: checkScore() ? game.score +  10 : game.score 
+    })
+    setScoreline([])
+    setCountDown(false)
+    setTopics(false)
+    setSelectedTopics([])
+    setGameover(true)
+    return true
   }
 
   const checkScore = () => game.QA[game.questionPointer].answer[0].correctIndex === game.selected
 
   const handleNext = () => {
     console.log(checkScore())
+    setScoreline([...scoreline, checkScore() ? 'success' : 'danger'])
     if(checkGameOver()) return
     gameSetter({
       ...game,
@@ -88,9 +97,9 @@ const Game = () => {
       score: checkScore() ? game.score +  10 : game.score 
     })
   }
-
+  
   return (
-    <div className='Game'>
+    <div className={`Game ${countDown && 'danger'}`}>
       {
         gameOver ?
         <GameOver reset={setGameover} score={game.score} /> :
@@ -101,7 +110,13 @@ const Game = () => {
             <Button onclick={proceedToGame} {...{width: 200, background: '#2C5663', color: '#f1f1f1', value: 'Proceed'}} />
           </> :
           <>
-            <Query />
+            <div className='scoreline'>
+              {
+                scoreline.map((value, i) => <div key={i} className={value}></div>)
+              }
+            </div>
+            <Timer endGame={endGame} countDown={countDown} setCountDown={setCountDown} />
+            <Query />  
             <Prompts />
             <Button onclick={handleNext} {...{width: 200, background: '#2C6342', color: '#f1f1f1', value: 'Next'}} />
           </>

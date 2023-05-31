@@ -1,13 +1,15 @@
 import React, { useEffect, useState } from 'react'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { IoLogoGameControllerB, IoMdHome, IoMdStats } from 'react-icons/io'
 
 const Nav = () => {
   const [route, setRoute] = useState('/')
   const [toggle, setToggle] = useState(false)
 
+  const loc = useLocation()
+  
   useEffect(() => {
-    const location = window.location.href.replace('http://localhost:3000/', '/')
+    const location = loc.pathname
     if(location === '/' || location === '/game' || location === '/leaderboards'){
       setRoute(location)
     }else{

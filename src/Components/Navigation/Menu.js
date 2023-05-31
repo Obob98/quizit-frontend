@@ -1,8 +1,22 @@
 import Settings from './Settings'
 import Button from '../CONSTANTS/Button'
 import { Link } from 'react-router-dom'
+import { useContext } from 'react'
+import authContext from '../../Context/authContext'
+import gameContext from '../../Context/gameContext'
 
 const Menu = () => {
+
+  const {setCredentials} = useContext(authContext)
+  const {gameSetter} = useContext(gameContext)
+  
+  const logout = () => {
+    localStorage.clear()
+    setCredentials({authenticated: false, user: {}})
+    gameSetter({})
+    window.location.href = '/'
+  }
+  
   return (
     <div className='Menu'>
         <nav>
@@ -16,9 +30,7 @@ const Menu = () => {
             </ul>
         </nav>
         {/* <Settings /> */}
-        <Link to={'/pro'}>
-          <Button {...{width: 200, background: '#f1f1f1', color: '#000', value: 'Settings'}} />
-        </Link>
+          <Button onclick={logout} {...{width: 200, background: '#000', color: '#fff', value: 'Logout'}} />
     </div>
   )
 }

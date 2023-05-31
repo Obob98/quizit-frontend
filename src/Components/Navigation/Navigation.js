@@ -11,6 +11,7 @@ const Navigation = () => {
       <AiOutlineMenu size={30} onClick={() => setHide(!hide)} className='menubtn' />
       <div className={`Navigation ${hide ? 'hide' : '' }`}>
         <Menu />
+        <div className='close' onClick={() => setHide(!hide)}></div>
       </div>
     </>
   )

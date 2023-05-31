@@ -1,4 +1,4 @@
-import React, {useState} from 'react'
+import React, {useContext, useEffect, useState} from 'react'
 import Navigation from './Components/Navigation/Navigation'
 import Board from './Components/Board/Board'
 import Nav from './Components/Navigation/Nav'
@@ -6,24 +6,28 @@ import Login from './Login'
 import authContext from './Context/authContext'
 
 const App = () => {
-const [credentials, setCredentials] = useState({})
+  const [credentials, setCredentials] = useState({})
+
+  localStorage.clear()
 
   return (
-    <>{
-        credentials.authenticated ?
-      <React.Fragment>
-        <h3 className='Logo'>QUIZit</h3>
-        <Navigation />
-        <authContext.Provider value={{credentials}} >
-          <Board />
+    <>
+      {
+          credentials.authenticated ?
+        <React.Fragment>
+          <h3 className='Logo'>QUIZit</h3>
+          <Navigation />
+          <authContext.Provider value={{credentials}} >
+            <Board />
+          </authContext.Provider>
+          <Nav />
+        </React.Fragment> :
+        <authContext.Provider value={{credentials, setCredentials}} >
+          <Login />
         </authContext.Provider>
-        <Nav />
-      </React.Fragment> :
-      <authContext.Provider value={{credentials, setCredentials}} >
-        <Login />
-      </authContext.Provider>
-    }</>
+      }
+    </>
   )
 }
 
-export default App
+export default React.memo(App)

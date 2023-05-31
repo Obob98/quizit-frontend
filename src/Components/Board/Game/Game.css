@@ -1,13 +1,15 @@
 .Game{
-    height: 100%;
+    position: relative;
+    height: 100vh;
     display: flex;
-    padding: 20px 50px;
+    padding: 20px;
     gap: 30px;
     flex-direction: column;
     align-items: center;
     justify-content: flex-start;
     overflow: hidden;
     overflow-y: auto;
+    padding-bottom: 200px;
 }
 
 .Topics{
@@ -91,10 +93,70 @@
     align-items: center;
 }
 
+.scoreline{
+    position: sticky;
+    top: 0;
+    left: 0;
+    width: 100%;
+    display: flex;
+    align-items: stretch;
+    background: yellow;
+}
 
-    @media all and (max-width: 600px){
+.scoreline > div {
+    flex: 1;
+    height: 10px;
+}
+
+.scoreline > div.success{
+    background: rgba(24, 204, 87, 1);
+}
+.scoreline > div.danger{
+    background: rgba(203, 79, 22, 1);
+}
+
+.Timer{
+    position: sticky;
+    top: 20px;
+    left: 0;
+    width: 100%;
+    padding: 0px 10px;
+    align-self: flex-start;
+    width: 100%;
+    max-width: 500px;
+    display: flex;
+    align-items: center;
+    /* background: green; */
+    justify-content: space-between;
+}
+
+.Timer h1 {
+    font-size: 3rem;
+    padding: 3px 5px;
+    background: rgba(141, 5, 5, 0.3);
+    backdrop-filter: blur(1px);
+    border-radius: 10px;
+}
+
+.Timer h3{
+    padding: 5px 10px;
+    display: inline-block;
+    background: rgba(5, 116, 141, 0.3);
+    backdrop-filter: blur(1px);
+    border-radius: 10px;
+}
+
+.danger{
+    animation: warn 1s ease-in-out infinite;
+}
+
+@keyframes warn {
+    50% {background: rgba(203, 79, 22, 0.2);}
+}
+
+@media all and (max-width: 600px){
     .Game{
-        padding: 5px;
+        padding: 5px 5px 200px 5px;
     }
     .container{
         flex-direction: column;

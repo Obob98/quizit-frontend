@@ -9,7 +9,7 @@ const Query = () => {
   return (
     <div className='Query'>
       <p>question</p>
-      <p>{game.QA[0].question}</p>
+      <p>{game.QA[game.questionPointer].question}</p>
       {/* <p>{game.QA[game.questionPointer].question}</p> */}
     </div>
   )

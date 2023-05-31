@@ -3,28 +3,38 @@ import './LeaderBoard.css'
 import axios from 'axios'
 import authContext from '../../../Context/authContext'
 import Loader from '../../../Loader'
+import Error from '../../../Error'
+import AEP from '../../../http-common'
 
 const LeaderBoards = () => {
-  const [players, setPlayers] = useState([])
-  
+  const [players, setPlayers] = useState([])  
   const [loading, setLoading] = useState(false)
+  const [error, setError] = useState(false)
+
 
   const {credentials} = useContext(authContext)
 
   useEffect(() => {
-    axios.get('https://gleaming-gray-gecko.cyclic.app/quizit/api/v1/users/getusers')
+    setLoading(true)
+    setError(false)
+    AEP.get('/getusers')
       .then(response => {
+        setLoading(false)
         const sorted = response.data.sort((a, b) => b.score - a.score) 
         setPlayers([...sorted])
       })
-      .catch(err => console.log(err))
+      .catch(err => {
+        setError(false)
+        setLoading(true)
+      })
   }, [])
   
   return (
     <div className='LeaderBoard'>
       <h4>Top Players</h4>
       {
-        loading ? <Loader /> : 
+        loading ? <Loader /> :
+        error ? <Error /> : 
         <>
           <div className='players'>
           {

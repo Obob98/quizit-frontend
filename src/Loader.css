@@ -18,8 +18,8 @@
     width: 20%;
     height: 100%;
     backdrop-filter: blur(10px);
-    background: rgb(103, 106, 114);
-    animation: anime 1s linear 2s infinite;
+    background: dodgerblue;
+    animation: anime 2s linear 1s infinite;
 }
 
 .Loader .wrapper > div:first-child{
@@ -27,12 +27,12 @@
 }
 
 .Loader .wrapper > div:last-child{
-    animation-delay: 1s;
+    animation-delay: 1.5s; 
 }
 
 @keyframes anime {
-    0% {scale: 1; opacity: 1;}
-    50% {scale: 0.2; opacity: 0.2;}
+    0% {scale: 1; opacity: 1; filter: hue-rotate(0deg);} 
+    50% {scale: 0.2; opacity: 0.2; filter: hue-rotate(360deg);}
 }
 
 @-webkit-keyframes anime {

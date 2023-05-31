@@ -6,7 +6,7 @@ import authContext from '../../../Context/authContext'
 import axios from 'axios'
 import AEP from '../.../../../../http-common'
 
-const GameOver = ({score, reset}) => {
+const Modal = ({msg}) => {
   console.log('in game over')
 
   const {credentials, setCredentials} = useContext(authContext)
@@ -20,29 +20,12 @@ const GameOver = ({score, reset}) => {
   
   return ReactDOM.createPortal(
     (
-      <div className='GameOver'>
-          <h1>GameOver</h1>
-          <div className='score'>
-              <h2>SCORE: {score || 0}</h2>
-          </div>
-          <div className='options'>
-              <Link to={'/'}>
-                Continue to Home
-                <IoMdHome />
-              </Link>
-              <Link to={'/game'} onClick={() => reset(false)}>
-                Play Again
-                <IoMdRefresh />
-              </Link>
-              <Link to={'/leaderboards'}>
-                Check Lanking in LeaderBoards
-                <IoMdStats />
-              </Link>
-          </div>
+      <div className='Modal'>
+          {msg}
       </div>
     ),
     document.getElementById('modal')
   ) 
 }
 
-export default GameOver
+export default Modal
